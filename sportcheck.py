@@ -3,13 +3,13 @@ import datetime
 
 # ----------- Datos por día ----------- #
 schedule = {
-    'lunes': ['Natación', 'PF', 'Running'],
-    'martes': ['Ciclismo'],
-    'miércoles': ['Natación', 'PF', 'Running'],
-    'jueves': ['Ciclismo'],
-    'viernes': ['Natación', 'PF'],
-    'sábado': ['Running'],
-    'domingo': []
+    'monday': ['Natación', 'PF', 'Running'],
+    'tuesday': ['Ciclismo'],
+    'wednesday': ['Natación', 'PF', 'Running'],
+    'thursday': ['Ciclismo'],
+    'friday': ['Natación', 'PF'],
+    'saturday': ['Running'],
+    'sunday': []
 }
 
 items_por_deporte = {
