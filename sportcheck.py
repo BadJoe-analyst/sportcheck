@@ -15,24 +15,49 @@ schedule = {
 
 items_por_deporte = {
     'Natación': [
+        '--- Elementos personales ---',
         'Bolso Natación', 'Toalla', 'Chalas', 'Cepillo de pelo', 'Secador de pelo',
-        'Neceser: jabón, shampoo, acondicionador', 'Traje Baño', 'Gorro', 'Lentes',
-        'Aletas', 'Paletas', 'Pull boy', 'Tapones',
+        'Neceser: jabón, shampoo, acondicionador',
+        '',
+        '--- Elementos de entrenamiento ---',
+        'Traje Baño', 'Gorro', 'Lentes', 'Aletas', 'Paletas', 'Pull boy', 'Tapones',
+        '',
+        '--- Ropa de cambio ---',
         'Calzón', 'Calcetines', 'Sostén', 'Pantalón', 'Polera', 'Chaleco/polerón', 'Calzado',
+        '',
+        '--- Suplementos ---',
         'Shaker (proteína/creatina)'
     ],
     'PF': [
-        'Peto', 'Polera', 'Calzas', 'Zapatillas pesas', 'Polerón', 'Toalla', 'Neceser', 'Secador pelo'
+        '--- Ropa deportiva ---',
+        'Peto', 'Polera', 'Calzas', 'Zapatillas pesas', 'Polerón',
+        '',
+        '--- Higiene ---',
+        'Toalla', 'Neceser', 'Secador pelo'
     ],
     'Ciclismo': [
+        '--- Equipamiento ---',
         'Casco', 'Lentes', 'Ciclo computador cargado', 'Bicicleta cargada', 'Luces cargadas',
+        '',
+        '--- Alimentación/Hidratación ---',
         'Gel o barrita', 'Botellas', 'Sales', 'Banda cardiaca', 'Audífonos',
+        '',
+        '--- Ropa ciclismo ---',
         'Polera cambio', 'Peto', 'Tricota', 'Cortaviento', 'Chaqueta', 'Guantes',
-        'Calza', 'Calcetas', 'Zapatillas', 'Bloqueador', 'Bandana', 'Gorro nerd horrible'
+        'Calza', 'Calcetas', 'Zapatillas',
+        '',
+        '--- Extras ---',
+        'Bloqueador', 'Bandana', 'Gorro nerd horrible'
     ],
     'Running': [
+        '--- Ropa deportiva ---',
         'Polera cambio', 'Zapatillas', 'Calcetas', 'Calzas', 'Peto', 'Polerón', 'Chaqueta',
-        'Banda cardiaca', 'Reloj cargado', 'Botellas', 'Sales', 'Comida', 'Audífonos'
+        '',
+        '--- Tecnología y control ---',
+        'Banda cardiaca', 'Reloj cargado', 'Audífonos',
+        '',
+        '--- Hidratación/Comida ---',
+        'Botellas', 'Sales', 'Comida'
     ]
 }
 
@@ -81,7 +106,13 @@ for deporte in deportes:
     st.markdown(f"### {deporte}")
     with st.expander("Ver ítems"):
         for item in items_por_deporte[deporte]:
-            checked = st.checkbox(item, key=f"{deporte}-{item}")
+            if item.startswith('---'):
+                st.markdown(f"**{item}**")
+                continue
+            if item.strip() == '':
+                st.markdown("&nbsp;")
+                continue
+            checked = st.checkbox(f" {item}", key=f"{deporte}-{item}")
             total_items += 1
             if checked:
                 completados += 1
