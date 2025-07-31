@@ -1,5 +1,6 @@
 import streamlit as st
 import datetime
+import time
 
 # ----------- Datos por día ----------- #
 schedule = {
@@ -43,6 +44,28 @@ def get_tomorrow():
 # ----------- App ----------- #
 st.set_page_config(page_title="Checklist entrenamiento", layout="centered")
 
+st.markdown("""
+    <style>
+    .celebration {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-color: #27ae60;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        z-index: 9999;
+        animation: fadein 1s ease-in-out;
+    }
+    @keyframes fadein {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("✅ Preparación para mañana")
 
 tomorrow = get_tomorrow()
@@ -65,16 +88,11 @@ for deporte in deportes:
 
 # ----------- Celebración ----------- #
 if total_items > 0 and completados == total_items:
-    st.markdown(
+    st.components.v1.html(
         """
-        <style>
-            body {
-                background-color: #27ae60 !important;
-            }
-        </style>
-        <h2 style='color:white;text-align:center;'>🎉 ¡Todo listo para mañana! 🎉</h2>
+        <div class='celebration'>🎉 ¡Todo listo para mañana! 🎉</div>
         """,
-        unsafe_allow_html=True
+        height=300
     )
 else:
     st.progress(completados / total_items if total_items else 0)
