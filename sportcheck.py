@@ -63,8 +63,13 @@ items_por_deporte = {
 
 # ----------- Funciones ----------- #
 def get_tomorrow():
-    tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
-    return tomorrow.strftime('%A').lower()
+    now = datetime.datetime.now()
+    if now.hour < 3:
+        target = now
+    else:
+        target = now + datetime.timedelta(days=1)
+    return target.strftime('%A').lower()
+
 
 # ----------- App ----------- #
 st.set_page_config(page_title="Checklist entrenamiento", layout="centered")
@@ -130,3 +135,4 @@ else:
     st.write(f"Completado: {completados} de {total_items}")
 
 st.caption("Hecho con amor para entrenar sin pensar 💪")
+
