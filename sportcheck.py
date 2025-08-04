@@ -99,11 +99,20 @@ st.markdown("""
 
 st.title("✅ Preparación para mañana")
 
-tomorrow = get_tomorrow()
-dia = tomorrow.capitalize()
-st.subheader(f"📅 Mañana es {dia}")
+dias_semana = {
+    'monday': 'Lunes',
+    'tuesday': 'Martes',
+    'wednesday': 'Miércoles',
+    'thursday': 'Jueves',
+    'friday': 'Viernes',
+    'saturday': 'Sábado',
+    'sunday': 'Domingo'
+}
 
-deportes = schedule.get(tomorrow, [])
+selected_day = st.selectbox("📅 ¿Qué día es mañana?", options=list(dias_semana.keys()), format_func=lambda x: dias_semana[x])
+st.subheader("📅 ¿Qué día es mañana?")
+
+deportes = schedule.get(selected_day, [])
 
 total_items = 0
 completados = 0
